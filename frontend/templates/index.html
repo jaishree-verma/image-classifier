@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Classifier Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+  <div class="container">
+    <h1>🖼️ Image Classifier Dashboard</h1>
+    <form method="POST" enctype="multipart/form-data">
+      <input type="file" name="image" accept="image/*" required>
+      <button type="submit">Upload & Classify</button>
+    </form>
+
+    {% if filename %}
+      <div class="result">
+        <h2>Uploaded Image:</h2>
+        <img src="{{ filename }}" alt="Uploaded Image">
+
+        <h2>Prediction:</h2>
+        <p><strong>{{ prediction }}</strong> ({{ "%.2f"|format(confidence) }}%)</p>
+
+        {% if top5 %}
+        <h2>Top 5 Predictions:</h2>
+        {% for label, prob in top5 %}
+          <div class="bar">
+            <span>{{ label }}</span>
+            <div class="progress">
+              <div class="progress-fill" style="width: {{ prob }}%"></div>
+            </div>
+            <span>{{ "%.2f"|format(prob) }}%</span>
+          </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

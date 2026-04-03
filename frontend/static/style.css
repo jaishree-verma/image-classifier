@@ -1,0 +1,75 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #787878;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 700px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+form {
+  margin: 20px 0;
+}
+
+input[type="file"] {
+  margin: 10px;
+}
+
+button {
+  background: linear-gradient(135deg, #3498db, #2ecc71);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.result {
+  margin-top: 30px;
+  text-align: left;
+}
+
+img {
+  margin-top: 20px;
+  max-width: 100%;
+  border-radius: 10px;
+  border: 3px solid #eee;
+}
+
+.bar {
+  margin: 15px 0;
+}
+
+.progress {
+  background: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 20px;
+  margin: 5px 0;
+}
+
+.progress-fill {
+  background: #3498db;
+  height: 100%;
+  transition: width 0.5s ease;
+}
