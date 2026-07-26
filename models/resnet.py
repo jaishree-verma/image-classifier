@@ -8,4 +8,4 @@ def load_model():
     weights = ResNet50_Weights.DEFAULT
     model = models.resnet50(weights=weights)
     model.eval()
-    return 
+    return model

@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+venv/
+ENV/
+env/
+.venv/
+
+# Uploaded static user files
+frontend/static/*.jpeg
+frontend/static/*.jpg
+frontend/static/*.png
+!frontend/static/style.css
+
+# Node / JS artifacts
+node_modules/
+package-lock.json

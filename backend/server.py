@@ -21,24 +21,30 @@ def index():
     prediction = None
     confidence = None
     filename = None
+    top5 = None
 
     if request.method == "POST":
-        file = request.files["image"]
-        if file:
-            filename = os.path.join("static", file.filename)
-            file.save(filename)
+        file = request.files.get("image")
+        if file and file.filename != "":
+            static_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "static"))
+            os.makedirs(static_dir, exist_ok=True)
+            save_path = os.path.join(static_dir, file.filename)
+            file.save(save_path)
+            filename = file.filename
 
-            input_tensor = preprocess_image(filename)
+            input_tensor = preprocess_image(save_path)
             with torch.no_grad():
                 output = model(input_tensor)
 
             probabilities = torch.nn.functional.softmax(output[0], dim=0)
-            pred_class = probabilities.argmax().item()
+            top5_prob, top5_catid = torch.topk(probabilities, 5)
+            
+            prediction = labels[top5_catid[0].item()]
+            confidence = top5_prob[0].item() * 100
+            
+            top5 = [(labels[top5_catid[i].item()], top5_prob[i].item() * 100) for i in range(5)]
 
-            prediction = labels[pred_class]
-            confidence = probabilities[pred_class].item() * 100
-
-    return render_template("index.html", prediction=prediction, confidence=confidence, filename=filename)
+    return render_template("index.html", prediction=prediction, confidence=confidence, filename=filename, top5=top5)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
