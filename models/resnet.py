@@ -1,11 +1,11 @@
 from torchvision import models
-from torchvision.models import ResNet50_Weights
+from torchvision.models import ResNet18_Weights
 
 def load_model():
     """
-    Loads a pre-trained ResNet-50 model using the new weights API.
+    Loads a pre-trained, lightweight ResNet-18 model optimized for low-memory environments (<512MB RAM).
     """
-    weights = ResNet50_Weights.DEFAULT
-    model = models.resnet50(weights=weights)
+    weights = ResNet18_Weights.DEFAULT
+    model = models.resnet18(weights=weights)
     model.eval()
     return model
