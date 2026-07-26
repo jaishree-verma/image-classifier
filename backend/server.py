@@ -12,9 +12,18 @@ app = Flask(__name__, template_folder="../frontend/templates", static_folder="..
 
 model = load_model()
 
-# Load ImageNet labels once
-labels_url = "https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt"
-labels = requests.get(labels_url).text.splitlines()
+# Load ImageNet labels with fallback
+try:
+    labels_url = "https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt"
+    resp = requests.get(labels_url, timeout=5)
+    if resp.status_code == 200:
+        labels = resp.text.splitlines()
+    else:
+        from utils.labels import IMAGENET_LABELS
+        labels = IMAGENET_LABELS
+except Exception:
+    from utils.labels import IMAGENET_LABELS
+    labels = IMAGENET_LABELS
 
 @app.route("/", methods=["GET", "POST"])
 def index():
