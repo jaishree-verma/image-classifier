@@ -1,10 +1,10 @@
-# 🖼️ AI Image Classifier Dashboard
+# AI Image Classifier Dashboard
 
-A full-stack deep learning web application that classifies images into 1,000 object categories using a pre-trained **ResNet-50** Neural Network trained on the ImageNet dataset.
+A python full-stack deep learning web application that classifies images into 1,000 object categories using a pre-trained **ResNet-50** Neural Network trained on the ImageNet dataset.
 
 ---
 
-## 🛠️ Technologies & Tools Used
+## Technologies & Tools Used
 
 ### **Backend & Deep Learning**
 - **Python 3.12**: Core programming language.
@@ -22,7 +22,7 @@ A full-stack deep learning web application that classifies images into 1,000 obj
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 1. **Top Match & Top-5 Probabilities**: Computes exact softmax confidence percentages and top 5 predictions for any uploaded image.
 2. **Standard Preprocessing**: Uses PyTorch's official `ResNet50_Weights.DEFAULT.transforms()` pipeline (Resizing to 256px, Center Crop to 224px, Tensor conversion, and ImageNet mean/std normalization).
@@ -31,7 +31,7 @@ A full-stack deep learning web application that classifies images into 1,000 obj
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 image_classifier/
@@ -58,7 +58,7 @@ image_classifier/
 
 ---
 
-## 🚦 How to Run
+## How to Run
 
 ### **1. Install Dependencies**
 ```bash
@@ -80,5 +80,5 @@ python app.py --image path/to/your/image.jpg
 
 ---
 
-## 👤 Author
+## Author
 Developed by **Jaishree Verma**
