@@ -1,6 +1,8 @@
 # AI Image Classifier Dashboard
 
-A python full-stack deep learning web application that classifies images into 1,000 object categories using a pre-trained **ResNet-50** Neural Network trained on the ImageNet dataset.
+A python full-stack deep learning web application that classifies images into 1,000 object categories using a pre-trained **ResNet-18** Neural Network trained on the ImageNet dataset.
+
+🌐 **Live Demo**: [https://image-classifier-vub2.onrender.com](https://image-classifier-vub2.onrender.com)
 
 ---
 
@@ -8,26 +10,28 @@ A python full-stack deep learning web application that classifies images into 1,
 
 ### **Backend & Deep Learning**
 - **Python 3.12**: Core programming language.
-- **PyTorch (`torch`)**: Deep learning framework for inference.
-- **Torchvision (`torchvision`)**: Official computer vision library providing pre-trained ResNet-50 weights and image transformations.
-- **Flask**: Lightweight WSGI web application framework for handling HTTP requests, file uploads, and template rendering.
-- **Pillow (`PIL`)**: Image loading and processing library.
-- **Requests**: HTTP client for fetching ImageNet class labels dynamically.
+- **PyTorch (`torch`)**: Lightweight CPU-optimized deep learning framework for inference.
+- **Torchvision (`torchvision`)**: Official computer vision library providing pre-trained ResNet-18 weights and image transformations.
+- **Flask**: WSGI web application framework handling HTTP requests, file uploads, and template rendering.
+- **Gunicorn**: Production WSGI HTTP server configured with single-worker execution for cloud hosting.
+- **Pillow (`PIL`)**: Image loading and pre-processing library.
+- **Requests**: HTTP client fetching ImageNet class labels dynamically.
 
 ### **Frontend & User Interface**
-- **HTML5**: Semantic web application layout with a responsive two-column grid.
-- **CSS3 (Vanilla)**: Custom dark theme styling with black background (`#000000`), deep navy card containers (`#0a0f1d`), bluish-white typography (`#e2e8f0`), and cyan-blue gradient accents (`#38bdf8`).
-- **Google Fonts**: Modern *Plus Jakarta Sans* font family for clean readability.
-- **Interactive JavaScript**: Client-side drag-and-drop file upload detection and real-time filename preview.
+- **HTML5**: Semantic layout with responsive two-column grid.
+- **CSS3 (Vanilla)**: Custom dark theme with black background (`#000000`), deep navy cards (`#0a0f1d`), bluish-white typography (`#e2e8f0`), and cyan-blue gradient accents (`#38bdf8`).
+- **Google Fonts**: *Plus Jakarta Sans* font family.
+- **Interactive JavaScript**: Drag-and-drop file upload zone and real-time filename preview.
 
 ---
 
 ## Key Features
 
 1. **Top Match & Top-5 Probabilities**: Computes exact softmax confidence percentages and top 5 predictions for any uploaded image.
-2. **Standard Preprocessing**: Uses PyTorch's official `ResNet50_Weights.DEFAULT.transforms()` pipeline (Resizing to 256px, Center Crop to 224px, Tensor conversion, and ImageNet mean/std normalization).
-3. **Clean Modern Dashboard**: Responsive dashboard layout featuring file preview, prediction stats, and visual probability progress bars.
-4. **Command Line & Web Support**: Run as a Flask web dashboard or directly from the CLI.
+2. **Memory-Optimized Model**: ResNet-18 architecture tuned for cloud deployment under 512MB RAM constraints.
+3. **Standard Preprocessing**: Uses PyTorch's official `ResNet18_Weights.DEFAULT.transforms()` pipeline (Resizing to 256px, Center Crop to 224px, Tensor conversion, and ImageNet normalization).
+4. **Clean Modern Dashboard**: Responsive dashboard layout featuring file preview, prediction stats, and visual probability progress bars.
+5. **Cloud Deployed**: Live production deployment hosted on Render.
 
 ---
 
@@ -37,7 +41,8 @@ A python full-stack deep learning web application that classifies images into 1,
 image_classifier/
 │
 ├── app.py                  # Command-line interface (CLI) for running single image classification
-├── requirements.txt        # Python package dependencies
+├── requirements.txt        # Python package dependencies (CPU PyTorch wheels)
+├── Procfile                # Gunicorn process configuration for cloud deployment
 ├── README.md               # Project documentation
 │
 ├── backend/
@@ -50,10 +55,10 @@ image_classifier/
 │       └── index.html      # Jinja2 HTML dashboard template
 │
 ├── models/
-│   └── resnet.py           # ResNet-50 model initialization function
+│   └── resnet.py           # ResNet-18 model initialization function
 │
 └── utils/
-    └── preprocess.py       # Image preprocessing module using ResNet50 weights transforms
+    └── preprocess.py       # Image preprocessing module using ResNet18 weights transforms
 ```
 
 ---
@@ -65,7 +70,7 @@ image_classifier/
 pip install -r requirements.txt
 ```
 
-### **2. Run Web Dashboard**
+### **2. Run Web Dashboard Locally**
 Run the Flask server from the root directory:
 ```bash
 python backend/server.py
